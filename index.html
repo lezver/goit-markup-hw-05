@@ -69,7 +69,7 @@
             Effective Solutions<br />
             for Your Business
           </h1>
-          <button class="hero-btn basic-btn" type="button">
+          <button class="hero-btn basic-btn" type="button" data-modal-open>
             Order Service
           </button>
         </div>
@@ -142,6 +142,7 @@
                 width="360"
                 height="300"
               />
+              <h3>descktop applications</h3>
             </li>
             <li class="what-are-we-doing-item">
               <img
@@ -150,6 +151,7 @@
                 width="360"
                 height="300"
               />
+              <h3>phone applications</h3>
             </li>
             <li class="what-are-we-doing-item">
               <img
@@ -158,6 +160,7 @@
                 width="360"
                 height="300"
               />
+              <h3>one ecosystem</h3>
             </li>
           </ul>
         </div>
@@ -574,6 +577,15 @@
         </div>
       </div>
     </footer>
+    <div class="backdrop is-hidden" data-modal>
+      <div class="modal">
+        <button class="modal-close-btn" type="button" data-modal-close>
+          <svg width="8px" height="8px">
+            <use href="./images/icons.svg#icon-modal-close-btn"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
     <script src="./js/modal.js"></script>
   </body>
 </html>

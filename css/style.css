@@ -8,6 +8,7 @@
   --cornflower: #e7e9fc;
   --cloud: #f4f4fd;
   --grey: #2e2f42b2;
+  --modal-background: #fcfcfc;
   --time-distribution: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -176,14 +177,11 @@ svg {
   padding: 16px 32px;
   margin: 0 auto;
   box-shadow: 0px 4px 4px 0px #00000026;
-  transition: background-color 250ms var(--time-distribution),
-    box-shadow 250ms var(--time-distribution);
+  transition: background 250ms var(--time-distribution);
 }
 .hero-btn:focus,
 .hero-btn:hover {
   background-color: var(--ocean);
-  box-shadow: 0px 2px 1px 0px #2e2f4214, 0px 1px 1px 0px #2e2f4229,
-    0px 1px 6px 0px #2e2f4214;
 }
 /* ==================== Why we? ==================== */
 .why-we {
@@ -197,6 +195,13 @@ svg {
 }
 .why-we-item {
   max-width: 264px;
+}
+.why-we-item svg {
+  transform: scale(1);
+  transition: transform 250ms var(--time-distribution);
+}
+.why-we-item:hover svg {
+  transform: scale(1.5);
 }
 .why-we-item > h3 {
   color: var(--navy-blue);
@@ -233,6 +238,28 @@ svg {
   flex-wrap: wrap;
   gap: 24px;
 }
+.what-are-we-doing-item {
+  position: relative;
+  overflow: hidden;
+}
+.what-are-we-doing-item > h3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: var(--grey);
+  transform: translatey(100%);
+  transition: transform 250ms var(--time-distribution);
+}
+.what-are-we-doing-item:hover > h3 {
+  transform: translateY(0);
+}
 /* ==================== Our Team ==================== */
 .our-team {
   background: var(--cloud);
@@ -254,7 +281,8 @@ svg {
 }
 .our-team-item {
   text-align: center;
-  box-shadow: 0px 2px 1px 0px #2e2f4214, 0px 1px 1px 0px #2e2f4229;
+  box-shadow: 0px 2px 1px 0px #2e2f4214, 0px 1px 1px 0px #2e2f4229,
+    0px 1px 6px 0px #2e2f4214;
 }
 .our-team-box {
   padding: 32px 16px;
@@ -284,6 +312,7 @@ svg {
   height: 40px;
   background: var(--iris);
   border-radius: 50%;
+  transition: background 250ms var(--time-distribution);
 }
 .our-team-link:hover,
 .our-team-link:focus {
@@ -315,6 +344,7 @@ svg {
   height: 88px;
   border-radius: 5px;
   border: 1px solid var(--light-slate);
+  transition: border 250ms var(--time-distribution);
 }
 .customers-link:hover,
 .customers-link:focus {
@@ -322,6 +352,7 @@ svg {
 }
 .customers-link > svg {
   fill: var(--light-slate);
+  transition: fill 250ms var(--time-distribution);
 }
 .customers-link:hover > svg,
 .customers-link:focus > svg {
@@ -342,6 +373,8 @@ svg {
   color: var(--iris);
   text-align: center;
   padding: 12px 24px;
+  transition: background 250ms var(--time-distribution),
+    color 250ms var(--time-distribution);
 }
 .portfolio-btn:hover,
 .portfolio-btn:focus {
@@ -358,12 +391,34 @@ svg {
 .portfolio-item {
   max-width: 360px;
   box-shadow: 0px 1px 6px 0px #2e2f4214;
+  transition: box-shadow 250ms var(--time-distribution);
 }
 .portfolio-item:hover,
 .portfolio-item:focus {
   box-shadow: 0px 2px 1px 0px #2e2f4214, 0px 1px 1px 0px #2e2f4229,
     0px 1px 6px 0px #2e2f4214;
   cursor: pointer;
+}
+.portfolio-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.portfolio-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--iris);
+  color: var(--cloud);
+  padding: 42px 32px 0;
+  overflow: auto;
+  transform: translateY(100%);
+  transition: transform 250ms var(--time-distribution);
+}
+.portfolio-item:hover .portfolio-overlay,
+.portfolio-item:focus .portfolio-overlay {
+  transform: translateY(0);
 }
 .portfolio-box {
   padding: 32px 16px;
@@ -377,8 +432,6 @@ svg {
   line-height: 1.2;
   margin-bottom: 8px;
 }
-/* ====================  ==================== */
-/* ====================  ==================== */
 /* ==================== FOOTER ==================== */
 .footer {
   background: var(--navy-blue);
@@ -421,8 +474,72 @@ svg {
   height: 40px;
   width: 40px;
   border-radius: 50%;
+  transition: background 250ms var(--time-distribution);
 }
 .footer-link:hover,
 .footer-link:focus {
   background: var(--green);
+}
+/* ====================  backdrop  ==================== */
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--grey);
+  z-index: 10;
+  transition: opacity 250ms var(--time-distribution),
+    visibility 250ms var(--time-distribution);
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 408px;
+  height: 576px;
+  transform: translate(-50%, -50%) scale(1);
+  background-color: var(--modal-background);
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px 0px #00000033, 0px 1px 3px 0px #0000001f,
+    0px 1px 1px 0px #00000024;
+  transition: transform 250ms var(--time-distribution);
+}
+.backdrop.is-hidden > .modal {
+  transform: translate(-50%, -50%) scale(1.5);
+}
+.modal-close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 24px;
+  margin-right: 24px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cornflower);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  transition: background 250ms var(--time-distribution),
+    border 250ms var(--time-distribution);
+}
+.modal-close-btn:hover,
+.modal-close-btn:focus {
+  background-color: var(--ocean);
+  border-color: var(--ocean);
+}
+.modal-close-btn > svg {
+  fill: #000;
+  transition: fill 250ms var(--time-distribution);
+}
+.modal-close-btn:hover > svg,
+.modal-close-btn:focus > svg {
+  fill: #fff;
 }
